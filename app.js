@@ -4,6 +4,7 @@ const productRoutes = require("./routes/products");
 
 const express = require("express");
 const prisma = require("./db/prisma");
+require("./db/seed");
 const app = express();
 
 const errorHandlerMiddleware = require("./errors/error-handler");
@@ -33,7 +34,9 @@ app.use(errorHandlerMiddleware);
 
 async function start() {
 	try {
-		app.listen(port, () => {});
+		app.listen(port, () => {
+			console.log(`App listening on ${port}.`);
+		});
 	} catch (error) {
 		console.log("error on initialization of the app: ", error);
 	}
